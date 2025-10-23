@@ -1,0 +1,307 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { MainNav } from '@/components/layout/main-nav';
+import { ProtectedRoute } from '@/components/layout/protected-route';
+import { Button } from '@/components/ui/button';
+import { AddExpenseModal } from '@/components/modals/add-expense-modal';
+import { ConfirmDialog } from '@/components/modals/confirm-dialog';
+import { expenseApi } from '@/lib/api';
+import { Plus, Trash2, Calendar, DollarSign, Tag, Loader2, AlertCircle, Download, FileSpreadsheet } from 'lucide-react';
+import { toast } from 'sonner';
+
+interface Expense {
+  _id: string;
+  userId: string;
+  category: string;
+  amount: number;
+  date: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export default function ExpensePage() {
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showAddExpense, setShowAddExpense] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [expenseToDelete, setExpenseToDelete] = useState<string | null>(null);
+  const [isDownloadingExcel, setIsDownloadingExcel] = useState(false);
+
+  const fetchExpenses = async () => {
+    try {
+      setIsLoading(true);
+      const data = await expenseApi.getAll();
+      setExpenses(data);
+    } catch (error: any) {
+      toast.error('Failed to fetch expenses');
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchExpenses();
+  }, []);
+
+  const handleDeleteClick = (id: string) => {
+    setExpenseToDelete(id);
+    setShowDeleteConfirm(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!expenseToDelete) return;
+    
+    try {
+      setDeletingId(expenseToDelete);
+      await expenseApi.delete(expenseToDelete);
+      toast.success('Expense deleted successfully!');
+      setShowDeleteConfirm(false);
+      setExpenseToDelete(null);
+      fetchExpenses(); // Refresh the list
+    } catch (error: any) {
+      toast.error('Failed to delete expense');
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    });
+  };
+
+  const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+
+  const handleDownloadExcel = async () => {
+    try {
+      setIsDownloadingExcel(true);
+      toast.loading('Preparing Excel file...', { id: 'download-excel' });
+      
+      const blob = await expenseApi.downloadExcel();
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `expenses_${new Date().toISOString().split('T')[0]}.xlsx`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      
+      toast.success('Excel file downloaded successfully!', { id: 'download-excel' });
+    } catch (error: any) {
+      toast.error('Failed to download Excel file', { id: 'download-excel' });
+      console.error(error);
+    } finally {
+      setIsDownloadingExcel(false);
+    }
+  };
+
+  return (
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50/20">
+        <MainNav />
+        <main className="w-full max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+          {/* Header Section */}
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <h1 className="text-5xl font-black text-slate-900 mb-2">Expenses</h1>
+              <p className="text-lg text-slate-600">Track and manage all your expenses</p>
+            </div>
+            <div className="flex gap-3">
+              <Button 
+                onClick={handleDownloadExcel}
+                disabled={isDownloadingExcel || expenses.length === 0}
+                variant="outline"
+                className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 font-bold rounded-xl px-6 h-12 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isDownloadingExcel ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-5 h-5 mr-2" />
+                    Export Excel
+                  </>
+                )}
+              </Button>
+              <Button 
+                onClick={() => setShowAddExpense(true)}
+                className="bg-gradient-to-r from-rose-600 to-orange-600 hover:from-rose-700 hover:to-orange-700 shadow-xl shadow-rose-500/30 border-0 font-bold rounded-xl px-8 h-12 text-white transition-all hover:scale-105"
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Add Expense
+              </Button>
+            </div>
+          </div>
+
+          {/* Stats Card */}
+          <div className="grid gap-8 md:grid-cols-3 mb-10">
+            <div className="rounded-2xl border-2 border-rose-200 bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 p-7 shadow-lg hover:shadow-xl transition-all group">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <DollarSign className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-600 mb-2">Total Expenses</p>
+                  <p className="text-4xl font-black text-rose-600">${totalExpenses.toFixed(2)}</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="rounded-2xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 p-7 shadow-lg hover:shadow-xl transition-all group">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Tag className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-600 mb-2">Total Entries</p>
+                  <p className="text-4xl font-black text-indigo-600">{expenses.length}</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="rounded-2xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-7 shadow-lg hover:shadow-xl transition-all group">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Calendar className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-600 mb-2">This Month</p>
+                  <p className="text-4xl font-black text-emerald-600">{expenses.length}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Expenses Table */}
+          <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-xl overflow-hidden hover:shadow-2xl transition-all">
+            <div className="p-8 border-b-2 border-slate-200 bg-gradient-to-r from-slate-50 via-white to-slate-50">
+              <h2 className="text-3xl font-black text-slate-900">All Expenses</h2>
+              <p className="text-base text-slate-600 mt-2">Complete list of your expense transactions</p>
+            </div>
+            
+            {isLoading ? (
+              <div className="flex items-center justify-center py-20">
+                <div className="text-center">
+                  <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+                  <p className="text-slate-600 font-medium">Loading expenses...</p>
+                </div>
+              </div>
+            ) : expenses.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-20">
+                <AlertCircle className="w-16 h-16 text-slate-300 mb-4" />
+                <h3 className="text-xl font-bold text-slate-900 mb-2">No Expenses Yet</h3>
+                <p className="text-slate-600 mb-6">Start tracking by adding your first expense</p>
+                <Button 
+                  onClick={() => setShowAddExpense(true)}
+                  className="bg-gradient-to-r from-rose-600 to-orange-600 hover:from-rose-700 hover:to-orange-700"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add First Expense
+                </Button>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-50 border-b-2 border-slate-200">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                        Category
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                        Amount
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                        Date
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                        Created
+                      </th>
+                      <th className="px-6 py-4 text-right text-xs font-bold text-slate-700 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    {expenses.map((expense) => (
+                      <tr key={expense._id} className="hover:bg-slate-50 transition-colors">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
+                              <Tag className="w-5 h-5 text-rose-600" />
+                            </div>
+                            <span className="font-semibold text-slate-900">{expense.category}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-lg font-bold text-rose-600">
+                            ${expense.amount.toFixed(2)}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-slate-600">{formatDate(expense.date)}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm text-slate-500">{formatDate(expense.createdAt)}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDeleteClick(expense._id)}
+                            disabled={deletingId === expense._id}
+                            className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 font-semibold"
+                          >
+                            {deletingId === expense._id ? (
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                              <>
+                                <Trash2 className="w-4 h-4 mr-2" />
+                                Delete
+                              </>
+                            )}
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </main>
+
+        {/* Add Expense Modal */}
+        <AddExpenseModal 
+          open={showAddExpense} 
+          onOpenChange={setShowAddExpense}
+          onSuccess={fetchExpenses}
+        />
+
+        {/* Delete Confirmation Dialog */}
+        <ConfirmDialog
+          open={showDeleteConfirm}
+          onOpenChange={setShowDeleteConfirm}
+          onConfirm={handleDeleteConfirm}
+          title="Delete Expense?"
+          description="Are you sure you want to delete this expense? This action cannot be undone."
+          confirmText="Delete"
+          cancelText="Cancel"
+          isLoading={deletingId !== null}
+          variant="danger"
+        />
+      </div>
+    </ProtectedRoute>
+  );
+}
