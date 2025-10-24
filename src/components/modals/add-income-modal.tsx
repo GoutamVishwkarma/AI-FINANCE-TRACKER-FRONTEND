@@ -135,14 +135,14 @@ export function AddIncomeModal({ open, onOpenChange, onSuccess }: AddIncomeModal
         </DialogHeader>
 
         {/* AI Feature Badge */}
-        <div className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+        <div className="flex items-center gap-3 p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+          <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <p className="text-sm font-bold text-slate-900">AI Income Categorization</p>
-              <span className="px-2 py-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold rounded-full">
+              <span className="px-2 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded-full">
                 COMING SOON
               </span>
             </div>
@@ -286,7 +286,7 @@ export function AddIncomeModal({ open, onOpenChange, onSuccess }: AddIncomeModal
               </Button>
               <Button
                 type="submit"
-                className="flex-1 h-11 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-lg shadow-lg shadow-emerald-500/30"
+                className="flex-1 h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg shadow-lg"
                 disabled={isLoading}
               >
                 {isLoading ? (

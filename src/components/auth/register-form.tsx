@@ -91,7 +91,7 @@ export function RegisterForm() {
           {/* Profile Image Upload */}
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-24 rounded-full bg-indigo-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
                 {imagePreview ? (
                   <img src={imagePreview} alt="Profile preview" className="w-full h-full object-cover" />
                 ) : (
@@ -186,7 +186,7 @@ export function RegisterForm() {
           />
           <Button 
             type="submit" 
-            className="w-full h-11 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-medium shadow-lg shadow-indigo-500/30 rounded-lg" 
+            className="w-full h-11 bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-lg rounded-lg" 
             disabled={isLoading}
           >
             {isLoading ? (

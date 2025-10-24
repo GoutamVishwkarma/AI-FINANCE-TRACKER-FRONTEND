@@ -38,19 +38,19 @@ export function ConfirmDialog({
       icon: 'text-rose-600',
       bg: 'bg-rose-50',
       border: 'border-rose-200',
-      button: 'bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700',
+      button: 'bg-rose-600 hover:bg-rose-700',
     },
     warning: {
       icon: 'text-amber-600',
       bg: 'bg-amber-50',
       border: 'border-amber-200',
-      button: 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700',
+      button: 'bg-amber-600 hover:bg-amber-700',
     },
     info: {
       icon: 'text-indigo-600',
       bg: 'bg-indigo-50',
       border: 'border-indigo-200',
-      button: 'bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800',
+      button: 'bg-indigo-600 hover:bg-indigo-700',
     },
   };
 

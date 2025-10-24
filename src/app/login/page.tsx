@@ -17,7 +17,7 @@ export default function LoginPage() {
   }, [isAuthenticated, router]);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+    <div className="relative min-h-screen flex items-center justify-center bg-slate-50">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-indigo-200/20 rounded-full blur-3xl" />
@@ -35,7 +35,7 @@ export default function LoginPage() {
               </div>
               <h1 className="text-5xl font-bold text-slate-900 leading-tight">
                 Track Your Expenses,
-                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"> Grow Your Wealth</span>
+                <span className="text-indigo-600"> Grow Your Wealth</span>
               </h1>
               <p className="text-lg text-slate-600">
                 Take control of your finances with intelligent expense tracking and insightful analytics.
@@ -45,7 +45,7 @@ export default function LoginPage() {
             {/* Feature Cards Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="group p-5 rounded-xl bg-white border border-indigo-100 shadow-sm hover:shadow-lg hover:border-indigo-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-indigo-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
                   <Clock className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Real-time Tracking</h3>
@@ -53,7 +53,7 @@ export default function LoginPage() {
               </div>
               
               <div className="group p-5 rounded-xl bg-white border border-purple-100 shadow-sm hover:shadow-lg hover:border-purple-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-purple-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
                   <FolderKanban className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Smart Categories</h3>
@@ -61,7 +61,7 @@ export default function LoginPage() {
               </div>
               
               <div className="group p-5 rounded-xl bg-white border border-emerald-100 shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-emerald-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
                   <BarChart3 className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Visual Reports</h3>
@@ -69,7 +69,7 @@ export default function LoginPage() {
               </div>
               
               <div className="group p-5 rounded-xl bg-white border border-orange-100 shadow-sm hover:shadow-lg hover:border-orange-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-orange-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
                   <Target className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Budget Goals</h3>

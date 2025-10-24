@@ -107,13 +107,13 @@ export default function ExpensePage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50/20">
+      <div className="min-h-screen bg-slate-50">
         <MainNav />
         <main className="w-full max-w-7xl mx-auto py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-10">
             <div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-1 sm:mb-2">Expenses</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1 sm:mb-2">Expenses</h1>
               <p className="text-sm sm:text-base lg:text-lg text-slate-600">Track and manage your spending</p>
             </div>
             <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
@@ -139,7 +139,7 @@ export default function ExpensePage() {
               </Button>
               <Button 
                 onClick={() => setShowAddExpense(true)}
-                className="bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 shadow-lg shadow-rose-500/30 font-bold flex-1 sm:flex-initial text-xs sm:text-sm h-10 sm:h-11"
+                className="bg-rose-600 hover:bg-rose-700 shadow-lg font-bold flex-1 sm:flex-initial text-xs sm:text-sm h-10 sm:h-11"
               >
                 <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 <span className="hidden sm:inline">Add Expense</span>
@@ -150,24 +150,22 @@ export default function ExpensePage() {
 
           {/* Stats Card */}
           <div className="grid gap-8 md:grid-cols-3 mb-10">
-            <div className="rounded-2xl border-2 border-rose-200 bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 p-7 shadow-lg hover:shadow-xl transition-all group">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3 sm:gap-6">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow-xl">
-                    <DollarSign className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" />
+            <div className="rounded-2xl border-2 border-rose-200 bg-rose-50 p-6 shadow-lg hover:shadow-xl transition-all group">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-xl bg-rose-600 flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <DollarSign className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <p className="text-xs sm:text-sm font-semibold text-slate-600 mb-1 sm:mb-2">Total Expenses</p>
-                    <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900">${totalExpenses.toFixed(2)}</p>
-                    <p className="text-xs sm:text-sm text-slate-500 mt-1 sm:mt-2">{expenses.length} transactions</p>
-                  </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-600 mb-2">Total Expenses</p>
+                  <p className="text-4xl font-black text-rose-600">${totalExpenses.toFixed(2)}</p>
+                  <p className="text-xs text-slate-500 mt-1">{expenses.length} transactions</p>
                 </div>
               </div>
             </div>
             
-            <div className="rounded-2xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 p-7 shadow-lg hover:shadow-xl transition-all group">
+            <div className="rounded-2xl border-2 border-indigo-200 bg-indigo-50 p-6 shadow-lg hover:shadow-xl transition-all group">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-xl bg-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <Tag className="w-8 h-8 text-white" />
                 </div>
                 <div>
@@ -177,9 +175,9 @@ export default function ExpensePage() {
               </div>
             </div>
             
-            <div className="rounded-2xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-7 shadow-lg hover:shadow-xl transition-all group">
+            <div className="rounded-2xl border-2 border-emerald-200 bg-emerald-50 p-6 shadow-lg hover:shadow-xl transition-all group">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-xl bg-emerald-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <Calendar className="w-8 h-8 text-white" />
                 </div>
                 <div>
@@ -192,7 +190,7 @@ export default function ExpensePage() {
 
           {/* Expenses List */}
           <div className="bg-white rounded-xl sm:rounded-2xl border-2 border-slate-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all">
-            <div className="bg-gradient-to-r from-slate-50 to-slate-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b-2 border-slate-200">
+            <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b-2 border-slate-200">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900">All Expenses</h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-0.5 sm:mt-1">Your complete expense history</p>
             </div>
@@ -211,7 +209,7 @@ export default function ExpensePage() {
                 <p className="text-slate-600 mb-6">Start tracking by adding your first expense</p>
                 <Button 
                   onClick={() => setShowAddExpense(true)}
-                  className="bg-gradient-to-r from-rose-600 to-orange-600 hover:from-rose-700 hover:to-orange-700"
+                  className="bg-rose-600 hover:bg-rose-700"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Add First Expense
@@ -246,7 +244,7 @@ export default function ExpensePage() {
                         <tr key={expense._id} className="hover:bg-slate-50 transition-colors">
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
+                              <div className="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center">
                                 <Tag className="w-5 h-5 text-rose-600" />
                               </div>
                               <span className="font-semibold text-slate-900">{expense.category}</span>
@@ -293,7 +291,7 @@ export default function ExpensePage() {
                     <div key={expense._id} className="bg-slate-50 rounded-lg p-4 border border-slate-200 hover:shadow-md transition-all">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center">
                             <Tag className="w-5 h-5 text-rose-600" />
                           </div>
                           <div>

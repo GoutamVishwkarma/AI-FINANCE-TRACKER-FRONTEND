@@ -17,7 +17,7 @@ export default function RegisterPage() {
   }, [isAuthenticated, router]);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-purple-50">
+    <div className="relative min-h-screen flex items-center justify-center bg-slate-50">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-200/20 rounded-full blur-3xl" />
@@ -44,7 +44,7 @@ export default function RegisterPage() {
             {/* Features list */}
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md mt-0.5">
+                <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center shadow-md mt-0.5">
                   <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
                 <div>
@@ -53,7 +53,7 @@ export default function RegisterPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md mt-0.5">
+                <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center shadow-md mt-0.5">
                   <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
                 <div>
@@ -62,7 +62,7 @@ export default function RegisterPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md mt-0.5">
+                <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center shadow-md mt-0.5">
                   <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
                 <div>
