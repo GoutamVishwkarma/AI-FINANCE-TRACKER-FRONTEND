@@ -11,6 +11,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "ExpenseTracker - Manage Your Finances",
   description: "A smart expense tracker to manage your personal finances",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

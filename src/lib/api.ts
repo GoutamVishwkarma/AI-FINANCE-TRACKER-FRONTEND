@@ -40,6 +40,10 @@ export const authApi = {
     });
     return response.data;
   },
+  updateUser: async (data: { fullName?: string; email?: string; profileImageUrl?: string; password?: string }) => {
+    const response = await api.put('/auth/updateUser', data);
+    return response.data;
+  },
 };
 
 export const expenseApi = {

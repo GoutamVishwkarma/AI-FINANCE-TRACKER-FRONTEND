@@ -109,38 +109,41 @@ export default function ExpensePage() {
     <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50/20">
         <MainNav />
-        <main className="w-full max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <main className="w-full max-w-7xl mx-auto py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-10">
             <div>
-              <h1 className="text-5xl font-black text-slate-900 mb-2">Expenses</h1>
-              <p className="text-lg text-slate-600">Track and manage all your expenses</p>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-1 sm:mb-2">Expenses</h1>
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600">Track and manage your spending</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
               <Button 
                 onClick={handleDownloadExcel}
                 disabled={isDownloadingExcel || expenses.length === 0}
                 variant="outline"
-                className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 font-bold rounded-xl px-6 h-12 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="border-rose-300 text-rose-600 hover:bg-rose-50 font-semibold flex-1 sm:flex-initial text-xs sm:text-sm h-10 sm:h-11"
               >
                 {isDownloadingExcel ? (
                   <>
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Downloading...
+                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 animate-spin" />
+                    <span className="hidden sm:inline">Downloading...</span>
+                    <span className="sm:hidden">...</span>
                   </>
                 ) : (
                   <>
-                    <Download className="w-5 h-5 mr-2" />
-                    Export Excel
+                    <FileSpreadsheet className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                    <span className="hidden sm:inline">Export Excel</span>
+                    <span className="sm:hidden">Export</span>
                   </>
                 )}
               </Button>
               <Button 
                 onClick={() => setShowAddExpense(true)}
-                className="bg-gradient-to-r from-rose-600 to-orange-600 hover:from-rose-700 hover:to-orange-700 shadow-xl shadow-rose-500/30 border-0 font-bold rounded-xl px-8 h-12 text-white transition-all hover:scale-105"
+                className="bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 shadow-lg shadow-rose-500/30 font-bold flex-1 sm:flex-initial text-xs sm:text-sm h-10 sm:h-11"
               >
-                <Plus className="w-5 h-5 mr-2" />
-                Add Expense
+                <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Add Expense</span>
+                <span className="sm:hidden">Add</span>
               </Button>
             </div>
           </div>
@@ -148,13 +151,16 @@ export default function ExpensePage() {
           {/* Stats Card */}
           <div className="grid gap-8 md:grid-cols-3 mb-10">
             <div className="rounded-2xl border-2 border-rose-200 bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 p-7 shadow-lg hover:shadow-xl transition-all group">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <DollarSign className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-slate-600 mb-2">Total Expenses</p>
-                  <p className="text-4xl font-black text-rose-600">${totalExpenses.toFixed(2)}</p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3 sm:gap-6">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow-xl">
+                    <DollarSign className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-600 mb-1 sm:mb-2">Total Expenses</p>
+                    <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900">${totalExpenses.toFixed(2)}</p>
+                    <p className="text-xs sm:text-sm text-slate-500 mt-1 sm:mt-2">{expenses.length} transactions</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -184,11 +190,11 @@ export default function ExpensePage() {
             </div>
           </div>
 
-          {/* Expenses Table */}
-          <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-xl overflow-hidden hover:shadow-2xl transition-all">
-            <div className="p-8 border-b-2 border-slate-200 bg-gradient-to-r from-slate-50 via-white to-slate-50">
-              <h2 className="text-3xl font-black text-slate-900">All Expenses</h2>
-              <p className="text-base text-slate-600 mt-2">Complete list of your expense transactions</p>
+          {/* Expenses List */}
+          <div className="bg-white rounded-xl sm:rounded-2xl border-2 border-slate-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all">
+            <div className="bg-gradient-to-r from-slate-50 to-slate-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b-2 border-slate-200">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">All Expenses</h2>
+              <p className="text-xs sm:text-sm text-slate-600 mt-0.5 sm:mt-1">Your complete expense history</p>
             </div>
             
             {isLoading ? (
@@ -212,72 +218,119 @@ export default function ExpensePage() {
                 </Button>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-slate-50 border-b-2 border-slate-200">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Category
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Amount
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Date
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Created
-                      </th>
-                      <th className="px-6 py-4 text-right text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-200">
-                    {expenses.map((expense) => (
-                      <tr key={expense._id} className="hover:bg-slate-50 transition-colors">
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
-                              <Tag className="w-5 h-5 text-rose-600" />
-                            </div>
-                            <span className="font-semibold text-slate-900">{expense.category}</span>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="text-lg font-bold text-rose-600">
-                            ${expense.amount.toFixed(2)}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="text-sm text-slate-600">{formatDate(expense.date)}</span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="text-sm text-slate-500">{formatDate(expense.createdAt)}</span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDeleteClick(expense._id)}
-                            disabled={deletingId === expense._id}
-                            className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 font-semibold"
-                          >
-                            {deletingId === expense._id ? (
-                              <Loader2 className="w-4 h-4 animate-spin" />
-                            ) : (
-                              <>
-                                <Trash2 className="w-4 h-4 mr-2" />
-                                Delete
-                              </>
-                            )}
-                          </Button>
-                        </td>
+              <>
+                {/* Desktop Table View */}
+                <div className="hidden md:block overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-slate-50 border-b-2 border-slate-200">
+                      <tr>
+                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Category
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Amount
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Date
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Created
+                        </th>
+                        <th className="px-6 py-4 text-right text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Actions
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {expenses.map((expense) => (
+                        <tr key={expense._id} className="hover:bg-slate-50 transition-colors">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
+                                <Tag className="w-5 h-5 text-rose-600" />
+                              </div>
+                              <span className="font-semibold text-slate-900">{expense.category}</span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="text-lg font-bold text-rose-600">
+                              ${expense.amount.toFixed(2)}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="text-sm text-slate-600">{formatDate(expense.date)}</span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="text-sm text-slate-500">{formatDate(expense.createdAt)}</span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDeleteClick(expense._id)}
+                              disabled={deletingId === expense._id}
+                              className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 font-semibold"
+                            >
+                              {deletingId === expense._id ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <>
+                                  <Trash2 className="w-4 h-4 mr-2" />
+                                  Delete
+                                </>
+                              )}
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                
+                {/* Mobile Card View */}
+                <div className="md:hidden p-4 space-y-3">
+                  {expenses.map((expense) => (
+                    <div key={expense._id} className="bg-slate-50 rounded-lg p-4 border border-slate-200 hover:shadow-md transition-all">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
+                            <Tag className="w-5 h-5 text-rose-600" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-slate-900 text-sm">{expense.category}</p>
+                            <p className="text-xs text-slate-500">{formatDate(expense.createdAt)}</p>
+                          </div>
+                        </div>
+                        <span className="text-lg font-bold text-rose-600">
+                          ${expense.amount.toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between pt-3 border-t border-slate-200">
+                        <span className="text-xs text-slate-600">
+                          <Calendar className="w-3 h-3 inline mr-1" />
+                          {formatDate(expense.date)}
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDeleteClick(expense._id)}
+                          disabled={deletingId === expense._id}
+                          className="text-rose-600 hover:text-rose-700 hover:bg-rose-100 font-semibold h-8 px-3 text-xs"
+                        >
+                          {deletingId === expense._id ? (
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                          ) : (
+                            <>
+                              <Trash2 className="w-3 h-3 mr-1" />
+                              Delete
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
         </main>

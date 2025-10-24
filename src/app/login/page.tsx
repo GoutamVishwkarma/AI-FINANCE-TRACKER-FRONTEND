@@ -81,16 +81,16 @@ export default function LoginPage() {
           {/* Right side - Login form */}
           <div className="w-full">
             {/* Mobile header */}
-            <div className="lg:hidden text-center mb-8">
+            <div className="lg:hidden text-center mb-6 sm:mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 font-semibold mb-4">
                 <Wallet className="w-5 h-5" />
                 ExpenseTracker
               </div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-2">Welcome Back!</h2>
-              <p className="text-slate-600">Sign in to continue managing your finances</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Welcome Back!</h2>
+              <p className="text-sm sm:text-base text-slate-600">Sign in to continue managing your finances</p>
             </div>
             
-            <div className="bg-white/90 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-xl p-8 sm:p-10">
+            <div className="bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10">
               <LoginForm />
             </div>
           </div>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="walletGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="32" fill="url(#walletGradient)"/>
+  
+  <!-- Wallet Icon -->
+  <g transform="translate(16, 18)">
+    <!-- Wallet body -->
+    <rect x="0" y="4" width="32" height="24" rx="3" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- Wallet flap -->
+    <path d="M 0 7 L 0 4 Q 0 0 4 0 L 28 0 Q 32 0 32 4 L 32 7 Z" fill="#ffffff" opacity="0.7"/>
+    
+    <!-- Card slot -->
+    <rect x="4" y="10" width="16" height="2" rx="1" fill="#6366f1" opacity="0.5"/>
+    
+    <!-- Money symbol -->
+    <circle cx="24" cy="18" r="4" fill="#6366f1"/>
+    <text x="24" y="21" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#ffffff" text-anchor="middle">$</text>
+  </g>
+</svg>
