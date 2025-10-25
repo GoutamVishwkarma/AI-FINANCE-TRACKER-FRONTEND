@@ -105,7 +105,7 @@ export default function DashboardPage() {
       change: '+20.1%',
       trend: 'up',
       icon: Wallet,
-      bgColor: 'bg-indigo-50',
+      bgColor: 'bg-gradient-to-br from-indigo-50 to-purple-50',
       iconColor: 'text-indigo-600',
       borderColor: 'border-indigo-100'
     },
@@ -115,7 +115,7 @@ export default function DashboardPage() {
       change: '+12.0%',
       trend: 'up',
       icon: TrendingUp,
-      bgColor: 'bg-emerald-50',
+      bgColor: 'bg-gradient-to-br from-emerald-50 to-teal-50',
       iconColor: 'text-emerald-600',
       borderColor: 'border-emerald-100'
     },
@@ -125,7 +125,7 @@ export default function DashboardPage() {
       change: '+5.2%',
       trend: 'up',
       icon: TrendingDown,
-      bgColor: 'bg-rose-50',
+      bgColor: 'bg-gradient-to-br from-rose-50 to-orange-50',
       iconColor: 'text-rose-600',
       borderColor: 'border-rose-100'
     }
@@ -273,7 +273,7 @@ export default function DashboardPage() {
             </div>
             <Button 
               onClick={() => setShowAddExpense(true)}
-              className="bg-indigo-600 hover:bg-indigo-700 shadow-lg border-0 font-bold rounded-xl px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base text-white transition-all w-full sm:w-auto"
+              className="bg-indigo-600 hover:bg-indigo-700 shadow-md border-0 font-semibold rounded-lg px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base text-white transition-colors w-full sm:w-auto"
             >
               <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Add Transaction
@@ -285,10 +285,10 @@ export default function DashboardPage() {
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div key={index} className={`rounded-xl sm:rounded-2xl border-2 ${stat.borderColor} ${stat.bgColor} p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all`}>
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <div className={`w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-md flex-shrink-0`}>
-                      <Icon className={`w-7 h-7 ${stat.iconColor}`} />
+                <div key={index} className="rounded-lg sm:rounded-xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm hover:shadow-md transition-all">
+                  <div className="flex items-start justify-between mb-3 sm:mb-4">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-slate-100 flex items-center justify-center`}>
+                      <Icon className={`w-6 h-6 sm:w-7 sm:h-7 ${stat.iconColor}`} />
                     </div>
                     <div className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1 sm:py-1.5 rounded-full ${
                       stat.trend === 'up' ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'
@@ -299,7 +299,7 @@ export default function DashboardPage() {
                   </div>
                   <div>
                     <p className="text-xs sm:text-sm font-semibold text-slate-600 mb-1 sm:mb-2">{stat.label}</p>
-                    <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900">{stat.value}</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-slate-900">{stat.value}</p>
                     <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">vs last month</p>
                   </div>
                 </div>
@@ -313,7 +313,7 @@ export default function DashboardPage() {
             <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Recent Transactions</h2>
+                  <h2 className="text-lg sm:text-xl font-semibold text-slate-900">Recent Transactions</h2>
                   <p className="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">Latest activity</p>
                 </div>
                 <Button 
@@ -344,10 +344,10 @@ export default function DashboardPage() {
                     const name = (tx.category || tx.source || 'Transaction') as string;
                     const { Icon, color } = getCategoryIcon(name, tx.icon);
                     return (
-                      <div key={tx._id} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition-all">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center flex-shrink-0`}>
-                            <Icon className="w-5 h-5" />
+                      <div key={tx._id} className="flex items-center justify-between p-2 sm:p-3 rounded-lg sm:rounded-xl border border-slate-100 hover:bg-slate-50 transition-all">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl ${color} flex items-center justify-center`}>
+                            <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                           </div>
                           <div className="min-w-0">
                             <p className="font-semibold text-slate-900 text-xs sm:text-sm truncate">{name}</p>
@@ -367,7 +367,7 @@ export default function DashboardPage() {
 
             {/* Financial Overview Chart */}
             <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 sm:mb-6">Financial Overview</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-slate-900 mb-4 sm:mb-6">Financial Overview</h2>
               <div className="space-y-4">
                 {financialOverview.map((item, index) => (
                   <div key={index} className="relative">
@@ -383,9 +383,9 @@ export default function DashboardPage() {
                     <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div 
                         className={`h-full rounded-full ${
-                          item.color === 'indigo' ? 'bg-indigo-600' : 
-                          item.color === 'emerald' ? 'bg-emerald-600' : 
-                          'bg-rose-600'
+                          item.color === 'indigo' ? 'bg-gradient-to-r from-indigo-500 to-indigo-600' : 
+                          item.color === 'emerald' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600' : 
+                          'bg-gradient-to-r from-rose-500 to-rose-600'
                         }`}
                         style={{ width: `${(item.value / 18450) * 100}%` }}
                       />
@@ -393,7 +393,7 @@ export default function DashboardPage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-6 p-4 rounded-xl bg-indigo-50 border border-indigo-100">
+              <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-semibold text-slate-600">Net Savings</p>
@@ -413,7 +413,7 @@ export default function DashboardPage() {
             <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Last 30 Days Expenses</h2>
+                  <h2 className="text-lg sm:text-xl font-semibold text-slate-900">Last 30 Days Expenses</h2>
                   <p className="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">By category</p>
                 </div>
                 <Button 
@@ -439,7 +439,7 @@ export default function DashboardPage() {
                       <div key={index} className="space-y-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className={`w-10 h-10 rounded-lg ${expense.color} bg-opacity-10 flex items-center justify-center flex-shrink-0`}>
+                            <div className={`w-9 h-9 rounded-lg ${expense.color} bg-opacity-10 flex items-center justify-center`}>
                               <Icon className={`w-5 h-5 ${expense.color.replace('bg-', 'text-')}`} />
                             </div>
                             <span className="font-semibold text-slate-900 text-sm">{expense.name}</span>
@@ -472,7 +472,7 @@ export default function DashboardPage() {
             <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Last 60 Days Income</h2>
+                  <h2 className="text-lg sm:text-xl font-semibold text-slate-900">Last 60 Days Income</h2>
                   <p className="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">By source</p>
                 </div>
                 <Button 
@@ -498,7 +498,7 @@ export default function DashboardPage() {
                       <div key={index} className="space-y-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className={`w-10 h-10 rounded-lg ${income.color} bg-opacity-10 flex items-center justify-center flex-shrink-0`}>
+                            <div className={`w-9 h-9 rounded-lg ${income.color} bg-opacity-10 flex items-center justify-center`}>
                               <Icon className={`w-5 h-5 ${income.color.replace('bg-', 'text-')}`} />
                             </div>
                             <span className="font-semibold text-slate-900 text-sm">{income.name}</span>
@@ -529,15 +529,15 @@ export default function DashboardPage() {
           </div>
 
           {/* AI Suggestions - Coming Soon */}
-          <div className="rounded-xl sm:rounded-2xl border-2 border-indigo-200 bg-indigo-50 p-4 sm:p-6 lg:p-8 shadow-xl">
+          <div className="rounded-lg sm:rounded-xl border border-indigo-200 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-4 sm:p-6 lg:p-8 shadow-md">
             <div className="flex items-start gap-3 sm:gap-4 lg:gap-6">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-indigo-600 flex items-center justify-center shadow-lg flex-shrink-0">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg bg-indigo-600 flex items-center justify-center flex-shrink-0">
                 <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  <h2 className="text-lg sm:text-xl font-bold text-slate-900">AI Financial Assistant</h2>
-                  <span className="px-2 sm:px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full self-start">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-slate-900">AI Financial Assistant</h2>
+                  <span className="px-2 sm:px-3 py-1 bg-indigo-600 text-white text-xs font-semibold rounded-full self-start">
                     COMING SOON
                   </span>
                 </div>

@@ -139,7 +139,7 @@ export default function ExpensePage() {
               </Button>
               <Button 
                 onClick={() => setShowAddExpense(true)}
-                className="bg-rose-600 hover:bg-rose-700 shadow-lg font-bold flex-1 sm:flex-initial text-xs sm:text-sm h-10 sm:h-11"
+                className="bg-rose-600 hover:bg-rose-700 shadow-md font-semibold flex-1 sm:flex-initial text-xs sm:text-sm h-10 sm:h-11"
               >
                 <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 <span className="hidden sm:inline">Add Expense</span>
@@ -150,48 +150,52 @@ export default function ExpensePage() {
 
           {/* Stats Card */}
           <div className="grid gap-8 md:grid-cols-3 mb-10">
-            <div className="rounded-2xl border-2 border-rose-200 bg-rose-50 p-6 shadow-lg hover:shadow-xl transition-all group">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-rose-600 flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <DollarSign className="w-8 h-8 text-white" />
+            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all group">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3 sm:gap-6">
+                  <div className="w-14 h-14 rounded-lg bg-rose-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <DollarSign className="w-7 h-7 text-white" />
                   </div>
-                <div>
-                  <p className="text-sm font-bold text-slate-600 mb-2">Total Expenses</p>
-                  <p className="text-4xl font-black text-rose-600">${totalExpenses.toFixed(2)}</p>
-                  <p className="text-xs text-slate-500 mt-1">{expenses.length} transactions</p>
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-600">Total Expenses</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-slate-900">${totalExpenses.toFixed(2)}</p>
+                    <p className="text-xs text-slate-500 mt-1">Expense records</p>
+                  </div>
                 </div>
               </div>
             </div>
             
-            <div className="rounded-2xl border-2 border-indigo-200 bg-indigo-50 p-6 shadow-lg hover:shadow-xl transition-all group">
+            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all group">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Tag className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 rounded-lg bg-indigo-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Tag className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-slate-600 mb-2">Total Entries</p>
-                  <p className="text-4xl font-black text-indigo-600">{expenses.length}</p>
+                  <p className="text-sm font-semibold text-slate-600 mb-1">Total Entries</p>
+                  <p className="text-2xl font-bold text-indigo-600">{expenses.length}</p>
+                  <p className="text-xs text-slate-500 mt-1">Expense Entries</p>
                 </div>
               </div>
             </div>
             
-            <div className="rounded-2xl border-2 border-emerald-200 bg-emerald-50 p-6 shadow-lg hover:shadow-xl transition-all group">
+            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all group">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-emerald-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Calendar className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 rounded-lg bg-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Calendar className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-slate-600 mb-2">This Month</p>
-                  <p className="text-4xl font-black text-emerald-600">{expenses.length}</p>
+                  <p className="text-sm font-semibold text-slate-600 mb-1">This Month</p>
+                  <p className="text-2xl font-bold text-emerald-600">{expenses.length}</p>
+                  <p className="text-xs text-slate-500 mt-1">Expense Transactions</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Expenses List */}
-          <div className="bg-white rounded-xl sm:rounded-2xl border-2 border-slate-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all">
-            <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b-2 border-slate-200">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">All Expenses</h2>
+          <div className="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-all">
+            <div className="bg-slate-50 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b border-slate-200">
+              <h2 className="text-lg sm:text-xl font-semibold text-slate-900">All Expenses</h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-0.5 sm:mt-1">Your complete expense history</p>
             </div>
             
@@ -209,7 +213,7 @@ export default function ExpensePage() {
                 <p className="text-slate-600 mb-6">Start tracking by adding your first expense</p>
                 <Button 
                   onClick={() => setShowAddExpense(true)}
-                  className="bg-rose-600 hover:bg-rose-700"
+                    className="bg-rose-600 hover:bg-rose-700 text-white"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Add First Expense
@@ -244,7 +248,7 @@ export default function ExpensePage() {
                         <tr key={expense._id} className="hover:bg-slate-50 transition-colors">
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center">
+                              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
                                 <Tag className="w-5 h-5 text-rose-600" />
                               </div>
                               <span className="font-semibold text-slate-900">{expense.category}</span>
@@ -291,7 +295,7 @@ export default function ExpensePage() {
                     <div key={expense._id} className="bg-slate-50 rounded-lg p-4 border border-slate-200 hover:shadow-md transition-all">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center">
                             <Tag className="w-5 h-5 text-rose-600" />
                           </div>
                           <div>

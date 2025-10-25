@@ -207,7 +207,7 @@ export function EditProfileModal({ open, onOpenChange }: EditProfileModalProps) 
               </Button>
               <Button
                 type="submit"
-                className="flex-1 h-11 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-lg"
+                className="flex-1 h-11 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-semibold rounded-lg shadow-lg shadow-indigo-500/30"
                 disabled={isLoading}
               >
                 {isLoading ? (

@@ -33,7 +33,7 @@ export default function LoginPage() {
                 <Wallet className="w-4 h-4" />
                 Smart Finance Management
               </div>
-              <h1 className="text-5xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-4xl font-bold text-slate-900 leading-tight">
                 Track Your Expenses,
                 <span className="text-indigo-600"> Grow Your Wealth</span>
               </h1>
@@ -45,7 +45,7 @@ export default function LoginPage() {
             {/* Feature Cards Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="group p-5 rounded-xl bg-white border border-indigo-100 shadow-sm hover:shadow-lg hover:border-indigo-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-indigo-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Clock className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Real-time Tracking</h3>
@@ -53,7 +53,7 @@ export default function LoginPage() {
               </div>
               
               <div className="group p-5 rounded-xl bg-white border border-purple-100 shadow-sm hover:shadow-lg hover:border-purple-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-purple-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <FolderKanban className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Smart Categories</h3>
@@ -61,7 +61,7 @@ export default function LoginPage() {
               </div>
               
               <div className="group p-5 rounded-xl bg-white border border-emerald-100 shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-emerald-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <BarChart3 className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Visual Reports</h3>
@@ -69,7 +69,7 @@ export default function LoginPage() {
               </div>
               
               <div className="group p-5 rounded-xl bg-white border border-orange-100 shadow-sm hover:shadow-lg hover:border-orange-200 transition-all cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-orange-600 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Target className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">Budget Goals</h3>
@@ -84,10 +84,10 @@ export default function LoginPage() {
             <div className="lg:hidden text-center mb-6 sm:mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 font-semibold mb-4">
                 <Wallet className="w-5 h-5" />
-                ExpenseTracker
+                FinancePath
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Welcome Back!</h2>
-              <p className="text-sm sm:text-base text-slate-600">Sign in to continue managing your finances</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Sign In</h2>
+              <p className="text-sm sm:text-base text-slate-600">Continue managing your finances</p>
             </div>
             
             <div className="bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10">

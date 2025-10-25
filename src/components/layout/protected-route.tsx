@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/auth-store';
-import { Loader2 } from 'lucide-react';
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -20,15 +19,8 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
     }
   }, [isMounted, isAuthenticated, router]);
 
-  if (!isMounted) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
+  // Show content immediately if authenticated, don't wait for mount
+  if (!isAuthenticated && isMounted) {
     return null;
   }
 

@@ -16,7 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Loader2, User, Upload } from 'lucide-react';
+import { Loader2, User, Upload, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -36,6 +36,8 @@ export function RegisterForm() {
   const login = useAuthStore((state) => state.login);
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -91,7 +93,7 @@ export function RegisterForm() {
           {/* Profile Image Upload */}
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-indigo-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
                 {imagePreview ? (
                   <img src={imagePreview} alt="Profile preview" className="w-full h-full object-cover" />
                 ) : (
@@ -155,12 +157,21 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel className="text-slate-700 font-medium text-sm">Password</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="password" 
-                    placeholder="Create a password" 
-                    className="h-11 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all"
-                    {...field} 
-                  />
+                  <div className="relative">
+                    <Input 
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Create a password" 
+                      className="h-11 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all pr-10"
+                      {...field} 
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -173,12 +184,21 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel className="text-slate-700 font-medium text-sm">Confirm Password</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="password" 
-                    placeholder="Confirm your password" 
-                    className="h-11 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all"
-                    {...field} 
-                  />
+                  <div className="relative">
+                    <Input 
+                      type={showConfirmPassword ? "text" : "password"}
+                      placeholder="Confirm your password" 
+                      className="h-11 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all pr-10"
+                      {...field} 
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                    >
+                      {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -186,7 +206,7 @@ export function RegisterForm() {
           />
           <Button 
             type="submit" 
-            className="w-full h-11 bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-lg rounded-lg" 
+            className="w-full h-11 bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-md rounded-lg" 
             disabled={isLoading}
           >
             {isLoading ? (

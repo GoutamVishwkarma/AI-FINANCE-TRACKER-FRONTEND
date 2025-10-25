@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700', '900'],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "ExpenseTracker - Manage Your Finances",
-  description: "A smart expense tracker to manage your personal finances",
+  title: "FinancePath - Manage Your Finances",
+  description: "A smart finance management tool to track your expenses and income",
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -27,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <AuthProvider>
           {children}
           <Toaster 

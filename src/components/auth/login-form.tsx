@@ -16,7 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -29,6 +29,7 @@ export function LoginForm() {
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -93,12 +94,21 @@ export function LoginForm() {
                   </button>
                 </div>
                 <FormControl>
-                  <Input 
-                    type="password" 
-                    placeholder="Enter your password" 
-                    className="h-11 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all"
-                    {...field} 
-                  />
+                  <div className="relative">
+                    <Input 
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password" 
+                      className="h-11 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all pr-10"
+                      {...field} 
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -106,7 +116,7 @@ export function LoginForm() {
           />
           <Button 
             type="submit" 
-            className="w-full h-11 bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-lg rounded-lg" 
+            className="w-full h-11 bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-md rounded-lg" 
             disabled={isLoading}
           >
             {isLoading ? (

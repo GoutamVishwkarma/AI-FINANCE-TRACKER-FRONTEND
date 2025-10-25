@@ -33,7 +33,7 @@ export default function RegisterPage() {
                 <Wallet className="w-4 h-4" />
                 Smart Finance Management
               </div>
-              <h1 className="text-5xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-4xl font-bold text-slate-900 leading-tight">
                 Start Managing Your Finances Today
               </h1>
               <p className="text-lg text-slate-600">
@@ -44,7 +44,7 @@ export default function RegisterPage() {
             {/* Features list */}
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center shadow-md mt-0.5">
+                <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center mt-0.5">
                   <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
                 <div>
@@ -53,7 +53,7 @@ export default function RegisterPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center shadow-md mt-0.5">
+                <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center mt-0.5">
                   <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
                 <div>
@@ -62,7 +62,7 @@ export default function RegisterPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center shadow-md mt-0.5">
+                <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center mt-0.5">
                   <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
                 <div>
@@ -79,7 +79,7 @@ export default function RegisterPage() {
             <div className="lg:hidden text-center mb-6 sm:mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200 text-purple-700 font-semibold mb-4">
                 <Wallet className="w-5 h-5" />
-                ExpenseTracker
+                FinancePath
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Get Started</h2>
               <p className="text-sm sm:text-base text-slate-600">Create your account to continue</p>

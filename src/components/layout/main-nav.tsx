@@ -32,10 +32,10 @@ export function MainNav() {
       <div className="w-full max-w-7xl mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-8">
           <Link href="/dashboard" className="flex items-center gap-2 font-bold text-lg sm:text-xl text-slate-900">
-            <div className="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg">
+            <div className="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center">
               <Wallet className="w-5 h-5 text-white" />
             </div>
-            <span className="hidden xs:inline sm:inline">ExpenseTracker</span>
+            <span className="hidden xs:inline sm:inline">FinancePath</span>
           </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -72,7 +72,7 @@ export function MainNav() {
               onClick={() => setShowEditProfile(true)}
               className="flex items-center gap-2 hover:bg-slate-50 rounded-lg p-2 transition-colors cursor-pointer"
             >
-              <div className="h-9 w-9 rounded-full bg-indigo-600 flex items-center justify-center shadow-md">
+              <div className="h-9 w-9 rounded-full bg-indigo-600 flex items-center justify-center">
                 <span className="text-sm font-semibold text-white">
                   {user.fullName.charAt(0).toUpperCase()}
                 </span>
@@ -128,7 +128,7 @@ export function MainNav() {
                   }}
                   className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full transition-colors"
                 >
-                  <div className="h-8 w-8 rounded-full bg-indigo-600 flex items-center justify-center shadow-md">
+                  <div className="h-8 w-8 rounded-full bg-indigo-600 flex items-center justify-center">
                     <span className="text-xs font-semibold text-white">
                       {user.fullName.charAt(0).toUpperCase()}
                     </span>

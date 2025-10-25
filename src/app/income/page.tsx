@@ -108,89 +108,86 @@ export default function IncomePage() {
     <ProtectedRoute>
       <div className="min-h-screen bg-slate-50">
         <MainNav />
-        <main className="w-full max-w-7xl mx-auto py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
+        <main className="w-full max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-10">
+          <div className="flex items-center justify-between mb-10">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1 sm:mb-2">Income</h1>
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600">Track and manage all your income sources</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Income</h1>
+              <p className="text-lg text-slate-600">Track and manage all your income sources</p>
             </div>
-            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+            <div className="flex gap-3">
               <Button 
                 onClick={handleDownloadExcel}
                 disabled={isDownloadingExcel || incomes.length === 0}
                 variant="outline"
-                className="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 font-semibold rounded-xl px-4 sm:px-6 h-10 sm:h-11 text-xs sm:text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-initial"
+                className="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 font-bold rounded-xl px-6 h-12 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isDownloadingExcel ? (
                   <>
-                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 animate-spin" />
-                    <span className="hidden sm:inline">Downloading...</span>
-                    <span className="sm:hidden">...</span>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Downloading...
                   </>
                 ) : (
                   <>
-                    <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                    <span className="hidden sm:inline">Export Excel</span>
-                    <span className="sm:hidden">Export</span>
+                    <Download className="w-5 h-5 mr-2" />
+                    Export Excel
                   </>
                 )}
               </Button>
               <Button 
                 onClick={() => setShowAddIncome(true)}
-                className="bg-emerald-600 hover:bg-emerald-700 shadow-lg border-0 font-bold rounded-xl px-6 sm:px-8 h-10 sm:h-11 text-xs sm:text-sm text-white transition-all flex-1 sm:flex-initial"
+                className="bg-emerald-600 hover:bg-emerald-700 shadow-md border-0 font-semibold rounded-lg px-8 h-12 text-white transition-colors"
               >
-                <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                <span className="hidden sm:inline">Add Income</span>
-                <span className="sm:hidden">Add</span>
+                <Plus className="w-5 h-5 mr-2" />
+                Add Income
               </Button>
             </div>
           </div>
 
           {/* Stats Cards */}
           <div className="grid gap-8 md:grid-cols-3 mb-10">
-            <div className="rounded-2xl border-2 border-emerald-200 bg-emerald-50 p-6 shadow-lg hover:shadow-xl transition-all group">
+            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all group">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-emerald-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <DollarSign className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 rounded-lg bg-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <DollarSign className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-slate-600 mb-2">Total Income</p>
-                  <p className="text-4xl font-black text-emerald-600">${totalIncome.toFixed(2)}</p>
+                  <p className="text-sm font-semibold text-slate-600 mb-1">Total Income</p>
+                  <p className="text-2xl font-bold text-emerald-600">${totalIncome.toFixed(2)}</p>
                 </div>
               </div>
             </div>
             
-            <div className="rounded-2xl border-2 border-indigo-200 bg-indigo-50 p-6 shadow-lg hover:shadow-xl transition-all group">
+            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all group">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Tag className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 rounded-lg bg-indigo-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Tag className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-slate-600 mb-2">Total Sources</p>
-                  <p className="text-4xl font-black text-indigo-600">{incomes.length}</p>
+                  <p className="text-sm font-semibold text-slate-600 mb-1">Total Sources</p>
+                  <p className="text-2xl font-bold text-indigo-600">{incomes.length}</p>
                 </div>
               </div>
             </div>
             
-            <div className="rounded-2xl border-2 border-cyan-200 bg-cyan-50 p-6 shadow-lg hover:shadow-xl transition-all group">
+            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all group">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-cyan-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Calendar className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 rounded-lg bg-cyan-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Calendar className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-slate-600 mb-2">This Month</p>
-                  <p className="text-4xl font-black text-cyan-600">{incomes.length}</p>
+                  <p className="text-sm font-semibold text-slate-600 mb-1">This Month</p>
+                  <p className="text-2xl font-bold text-cyan-600">{incomes.length}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Income Table */}
-          <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-xl overflow-hidden hover:shadow-2xl transition-all">
-            <div className="p-8 border-b-2 border-slate-200 bg-slate-50">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">All Income</h2>
-              <p className="text-sm sm:text-base text-slate-600 mt-1 sm:mt-2">Complete list of your income transactions</p>
+          <div className="rounded-lg border border-slate-200 bg-white shadow-sm overflow-hidden hover:shadow-md transition-all">
+            <div className="p-6 border-b border-slate-200 bg-slate-50">
+              <h2 className="text-lg sm:text-xl font-semibold text-slate-900">All Income</h2>
+              <p className="text-base text-slate-600 mt-2">Complete list of your income transactions</p>
             </div>
             
             {isLoading ? (
@@ -207,7 +204,7 @@ export default function IncomePage() {
                 <p className="text-slate-600 mb-6">Start tracking by adding your first income</p>
                 <Button 
                   onClick={() => setShowAddIncome(true)}
-                  className="bg-emerald-600 hover:bg-emerald-700"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Add First Income
